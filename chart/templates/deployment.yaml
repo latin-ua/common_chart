@@ -17,5 +17,13 @@ spec:
       containers:
       - name: app
         image: {{ .Values.image }}
+        env:
+          {{- if .Values.newRelicLicenseKey }}
+          - name: NEW_RELIC_LICENSE_KEY
+            valueFrom:
+              secretRef:
+                name: {{ .Values.serviceName }}-newrelic-key
+                key: licenseKey
+          {{- end }}
         ports:
         - containerPort: {{ .Values.containerPort }}
