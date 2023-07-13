@@ -21,7 +21,7 @@ spec:
           {{- if .Values.newRelicLicenseKey }}
           - name: NEW_RELIC_LICENSE_KEY
             valueFrom:
-              secretRef:
+              secretKeyRef:
                 name: {{ .Values.serviceName }}-newrelic-key
                 key: licenseKey
           {{- end }}
