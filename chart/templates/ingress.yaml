@@ -7,6 +7,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/healthcheck-path: /health-check
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/load-balancer-name: {{ .Values.serviceName }}-ingress
     external-dns.alpha.kubernetes.io/hostname: {{ .Values.externalDnsName }}
 spec:
   rules:
