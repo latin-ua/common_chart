@@ -3,3 +3,4 @@ serviceName: ""
 containerPort: ""
 servicePort: ""
 externalDnsName: []
+certificateArn: null
