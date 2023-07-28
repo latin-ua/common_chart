@@ -2,4 +2,4 @@ image: ""
 serviceName: ""
 containerPort: ""
 servicePort: ""
-externalDnsName: ""
+externalDnsName: []
