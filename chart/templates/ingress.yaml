@@ -8,16 +8,18 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /health-check
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/load-balancer-name: {{ .Values.serviceName }}-ingress
-    external-dns.alpha.kubernetes.io/hostname: {{ .Values.externalDnsName }}
+    external-dns.alpha.kubernetes.io/hostname: {{ join "," .Values.externalDnsName }}
 spec:
   rules:
-    - host: {{ .Values.externalDnsName }}
+  {{- range $.Values.externalDnsName }}
+    - host: {{ . }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.serviceName }}
+                name: {{ $.Values.serviceName }}
                 port:
-                  number: {{ .Values.servicePort }}
+                  number: {{ $.Values.servicePort }}
+  {{- end }}
