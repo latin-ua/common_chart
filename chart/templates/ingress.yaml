@@ -9,6 +9,9 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/load-balancer-name: {{ .Values.serviceName }}-ingress
     external-dns.alpha.kubernetes.io/hostname: {{ join "," .Values.externalDnsName }}
+    {{- if .Values.certificateArn }} 
+    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.certificateArn }}
+    {{- end }}
 spec:
   rules:
   {{- range $.Values.externalDnsName }}
