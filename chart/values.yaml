@@ -4,3 +4,4 @@ containerPort: ""
 servicePort: ""
 externalDnsName: []
 certificateArn: null
+healthCheck: ""
